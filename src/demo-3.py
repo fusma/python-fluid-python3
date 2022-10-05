@@ -33,7 +33,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 # ますの数
-N = 64
+N = 32
 size = N + 2
 
 dt = 0.1
@@ -176,9 +176,9 @@ def key_func(key, x, y):
 
     global dvel
 
-    if key == 'c' or key == 'C':
+    if key == b'c' or key == b'C':
         clear_data()
-    if key == 'v' or key == 'V':
+    if key == b'v' or key == b'V':
         dvel = not dvel
 
 
