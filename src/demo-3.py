@@ -33,7 +33,7 @@ from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
 # ますの数
-N = 32
+N = 50
 size = N + 2
 
 dt = 0.1
