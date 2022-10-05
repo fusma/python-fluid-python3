@@ -37,8 +37,10 @@ N = 32
 size = N + 2
 
 dt = 0.1
-diff = 0.0
-visc = 0.0
+# 拡散項
+diff = 0
+# 粘性係数
+visc = 0.01
 force = 5.0
 source = 100.0
 dvel = False
