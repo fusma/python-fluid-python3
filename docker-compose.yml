@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  pypy-python:
+    build: .
+    volumes:
+      - ./src/:/src
+    tty: true

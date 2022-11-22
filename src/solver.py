@@ -13,6 +13,11 @@ def set_bnd(N, b, x):
     vertical component of the velocity should be zero on the horizontal walls.
     For the density and other fields considered in the code we simply assume
     continuity. The following code implements these conditions.
+    流体は固い壁のある箱の中に入っていると仮定する。
+
+    壁から流れが出ることはないはずである。これは単純に、速度の水平成分が垂直壁でゼロになり、速度の垂直成分が水平壁でゼロになることを意味する。
+    このコードで考慮する密度や他のフィールドについては、単に連続性を仮定する。これらの条件を実装したのが次のコードである。
+
     """
 
     for i in range(1, N + 1):
@@ -52,7 +57,8 @@ def lin_solve(N, b, x, x0, a, c):
 
 
 def add_source(N, x, s, dt):
-    """Addition of forces: the density increases due to sources."""
+    """Addition of forces: the density increases due to sources.
+    力の付加：源流により密度が増加する。"""
 
     size = (N + 2)
     x[0:size, 0:size] += dt * s[0:size, 0:size]
@@ -64,6 +70,9 @@ def diffuse(N, b, x, x0, diff, dt):
     The basic idea behind our method is to find the densities which when
     diffused backward in time yield the densities we started with. The simplest
     iterative solver which works well in practice is Gauss-Seidel relaxation.
+
+    拡散：密度がある速度で拡散する。
+    この方法の基本的な考え方は、時間的に逆拡散されたときに、私たちが開始した密度をもたらす密度を見つけることです。最も単純な反復解法で、実際によく機能するのはガウス・サイデル緩和です。
     """
 
     a = dt * diff * N * N
@@ -77,6 +86,9 @@ def advect(N, b, d, d0, u, v, dt):
     centers forward in time through the velocity field, we look for the
     particles which end up exactly at the cell centers by tracing backwards in
     time from the cell centers.
+
+    移流：密度が速度場に追従する。
+    移流ステップの基本的な考え方。速度場を通してセル中心を時間的に前進させるのではなく、セル中心から時間的に逆行するようにたどって、セル中心にぴったりと行き着く粒子を探します。
     """
 
     dt0 = dt * N
@@ -126,6 +138,8 @@ def dens_step(N, x, x0, u, v, diff, dt):
     """Evolving density.
 
     It implies advection, diffusion, addition of sources.
+    密度を更新する．
+    移流、拡散、源流の追加を含む。
     """
 
     add_source(N, x, x0, dt)
@@ -139,6 +153,9 @@ def vel_step(N, u, v, u0, v0, visc, dt):
     """Evolving velocity.
 
     It implies self-advection, viscous diffusion, addition of forces.
+
+    速度を更新する．
+    自己移流、粘性拡散、力の付加を含む。
     """
 
     add_source(N, u, u0, dt)
