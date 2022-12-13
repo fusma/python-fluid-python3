@@ -2,3 +2,5 @@ numpy
 PyOpenGL-accelerate
 PyOpenGL
 matplotlib
+tqdm
+ipykernel
