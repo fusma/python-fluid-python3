@@ -1,1 +1,0 @@
-/soturon/Scripts/Activate.ps1

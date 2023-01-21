@@ -13,7 +13,7 @@ import os
 
 # %%
 N = 30
-prefix = "new30"
+prefix = "0118final"
 
 
 def main(x="", seed=0):
